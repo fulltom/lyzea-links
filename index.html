@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thomas Vergnaud — Consultant Technique Freelance</title>
+  <meta name="description" content="Consultant technique freelance — Apps, Automatisation, Agents IA. Je cadre, je code, je livre." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,300&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F4F2EE;
+      --surface:  #FFFFFF;
+      --border:   #E4E1DB;
+      --accent:   #1B4FD8;
+      --text:     #18181B;
+      --sub:      #52525B;
+      --muted:    #A1A1AA;
+      --radius:   12px;
+      --shadow:   0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+      --shadow-hover: 0 2px 6px rgba(0,0,0,0.08), 0 8px 28px rgba(0,0,0,0.1);
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 20px 64px;
+    }
+
+    /* ─── Card ─── */
+    .card {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ─── Header block ─── */
+    .header {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      animation: fadeUp 0.55s ease 0.08s forwards;
+    }
+
+    /* ─── Avatar ─── */
+    .avatar-wrap {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2.5px solid var(--border);
+      margin-bottom: 20px;
+      background: var(--bg);
+      flex-shrink: 0;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-initials {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ─── Identity ─── */
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 7vw, 32px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      text-align: center;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .title {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .sep {
+      width: 28px;
+      height: 1px;
+      background: var(--border);
+      margin: 18px 0;
+    }
+
+    .description {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--sub);
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .tagline {
+      margin-top: 12px;
+      font-size: 13px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #6B7280;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    .pills {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #1844C0;
+      border: 1.5px solid rgba(27,79,216,0.4);
+      border-radius: 100px;
+      padding: 5px 13px;
+      background: rgba(27,79,216,0.08);
+    }
+
+    /* ─── Buttons ─── */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      width: 100%;
+      padding: 17px 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+      opacity: 0;
+    }
+
+    .btn:nth-child(1) { animation: fadeUp 0.55s ease 0.22s forwards; }
+    .btn:nth-child(2) { animation: fadeUp 0.55s ease 0.32s forwards; }
+    .btn:nth-child(3) { animation: fadeUp 0.55s ease 0.42s forwards; }
+    .btn:nth-child(4) { animation: fadeUp 0.55s ease 0.52s forwards; }
+
+    .btn:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: #D4D0CA;
+      transform: translateY(-2px);
+    }
+
+    .btn:active { transform: translateY(0); box-shadow: var(--shadow); }
+
+    /* Primary CTA */
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+
+    .btn.primary:hover {
+      background: #1844C0;
+      border-color: #1844C0;
+      box-shadow: 0 4px 20px rgba(27,79,216,0.28);
+    }
+
+    /* ─── Icons ─── */
+    .btn-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .btn.primary .btn-icon { opacity: 0.95; }
+
+    /* ─── Footer ─── */
+    .footer {
+      margin-top: 36px;
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.55s ease 0.64s forwards;
+    }
+
+    /* ─── Animations ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 380px) {
+      body { padding: 32px 16px 48px; }
+      .header { padding: 28px 20px 26px; }
+      .btn { padding: 15px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="avatar-wrap">
+        <img src="photo.png" alt="Thomas Vergnaud" />
+      </div>
+
+      <h1 class="name">Thomas Vergnaud</h1>
+      <p class="title">Consultant Technique Freelance</p>
+
+      <div class="sep"></div>
+
+      <p class="description">
+        Je prends votre projet en charge de A à Z.<br>
+        Je cadre, je code, je livre. Et je reste après.
+      </p>
+
+      <p class="tagline">Je code ce que les no-code ne peuvent pas faire</p>
+
+      <div class="pills">
+        <span class="pill">Apps</span>
+        <span class="pill">Automatisation</span>
+        <span class="pill">Agents IA</span>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <nav class="links" aria-label="Liens">
+
+      <a href="https://cal.com/lyzea/30min" class="btn primary" target="_blank" rel="noopener">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="3"/>
+          <path d="M16 2v4M8 2v4M3 10h18"/>
+          <circle cx="12" cy="15" r="1.5" fill="currentColor"/>
+        </svg>
+        Prendre RDV
+      </a>
+
+      <a href="https://www.linkedin.com/in/thomasvergnaud/" class="btn" target="_blank" rel="noopener">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        Profil LinkedIn
+      </a>
+
+      <a href="https://lyzea.pro/" class="btn" target="_blank" rel="noopener">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        Site Lyzea
+      </a>
+
+      <a href="https://fulltom.github.io/glossaire-ia/" class="btn" target="_blank" rel="noopener">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          <path d="M9 7h6M9 11h6M9 15h4"/>
+        </svg>
+        Glossaire IA
+      </a>
+
+    </nav>
+
+    <p class="footer">lyzea.pro</p>
+
+  </div>
+
+</body>
+</html>
